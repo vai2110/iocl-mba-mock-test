@@ -41,7 +41,9 @@ const A=[
 ["Logical Reasoning","K is the brother of L. L is the mother of M. K is M's:",["Father","Uncle","Brother","Grandfather"],1,"Mother's brother is uncle."],
 ["Logical Reasoning","If all fuel stations in Zone X are audited and Station P is in Zone X, what follows?",["P is audited","P is closed","P is profitable","P is privately owned"],0,"P belongs to the audited set."],
 ["Logical Reasoning","Statement: Some A are B. All B are C. Conclusion:",["Some A are C","All A are C","No A are C","All C are A"],0,"The A that are B must also be C."],
-["Logical Reasoning","In a code, 3 means +, 4 means −, 5 means ×. What is 8 3 2 5 4 3 1?",["17","19","21","23"],1,"8+2×1−? Ambiguous operator precedence; this question should not be used."]
+["Logical Reasoning","A, B, C and D have different sales targets. A exceeds B, C is below B, and D exceeds A. Who has the highest target?",["A","B","C","D"],3,"D exceeds A, and A exceeds B, so D is highest."],
+["Logical Reasoning","A meeting is scheduled before the training session. The training is before the review. Which must be true?",["Review is before meeting","Meeting is before review","Training is after review","Meeting and review are simultaneous"],1,"If meeting precedes training and training precedes review, meeting precedes review."],
+["Logical Reasoning","Four products P, Q, R and S are ranked. P is above Q, Q is above R, and S is below R. Which is highest?",["P","Q","R","S"],0,"P is above Q, which is above R, which is above S."]
 ];
 const V=[
 ["Verbal Ability","Choose the grammatically correct sentence:",["Neither the manager nor the executives was available.","Neither the manager nor the executives were available.","Neither manager nor executives was available.","Neither the manager or executives were available."],1,"With neither/nor, the verb agrees with the nearer plural subject."],
@@ -115,9 +117,9 @@ const D=[
 ["Marketing Control","A marketing control system compares actual performance with:",["Planned objectives and standards","Only competitor slogans","Only employee attendance","Only factory colour"],0,"Control involves measuring, comparing and corrective action."]
 ];
 const cleanA=A.slice(0,20).concat(A.slice(20,32),V);
-const fixes={3:[3,"5/12×240 lakh=100 lakh, so ₹1 crore."],4:[1,"The original total is 8×31=248; replacing 24 with 40 gives 264; 264/8=33."],6:[2,"3200×1.125=3600."],31:[0,"The expression is intentionally removed from the test bank because its coded operators create ambiguity."]};
+const fixes={3:[3,"5/12×240 lakh=100 lakh, so ₹1 crore."],4:[1,"The original total is 8×31=248; replacing 24 with 40 gives 264; 264/8=33."],6:[2,"3200×1.125=3600."]};
 if(fixes[3]){cleanA[3][3]=fixes[3][0];cleanA[3][4]=fixes[3][1]}if(fixes[4]){cleanA[4][3]=fixes[4][0];cleanA[4][4]=fixes[4][1]}if(fixes[6]){cleanA[6][3]=fixes[6][0];cleanA[6][4]=fixes[6][1]}
-cleanA.splice(31,1);
+
 const raw=cleanA.map(x=>({section:"A",topic:x[0],q:x[1],opts:x[2],ans:x[3],exp:x[4]}));
 const dom=D.map(x=>({section:"B",topic:x[0],q:x[1],opts:x[2],ans:x[3],exp:x[4]}));
 const Q=raw.concat(dom);
