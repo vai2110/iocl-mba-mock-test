@@ -44,6 +44,7 @@ const A=[
 ["Logical Reasoning","A, B, C and D have different sales targets. A exceeds B, C is below B, and D exceeds A. Who has the highest target?",["A","B","C","D"],3,"D exceeds A, and A exceeds B, so D is highest."],
 ["Logical Reasoning","A meeting is scheduled before the training session. The training is before the review. Which must be true?",["Review is before meeting","Meeting is before review","Training is after review","Meeting and review are simultaneous"],1,"If meeting precedes training and training precedes review, meeting precedes review."],
 ["Logical Reasoning","If M is older than N, N is older than P, and P is older than Q, who is youngest?",["M","N","P","Q"],3,"The order is M>N>P>Q, so Q is youngest."],
+["Logical Reasoning","A report lists regions in this order: North, West, South, East. Which region is third?",["North","West","South","East"],2,"South is third in the stated order."],
 ["Logical Reasoning","Four products P, Q, R and S are ranked. P is above Q, Q is above R, and S is below R. Which is highest?",["P","Q","R","S"],0,"P is above Q, which is above R, which is above S."]
 ];
 const V=[
@@ -123,7 +124,7 @@ if(fixes[3]){cleanA[3][3]=fixes[3][0];cleanA[3][4]=fixes[3][1]}if(fixes[4]){clea
 
 const raw=cleanA.map(x=>({section:"A",topic:x[0],q:x[1],opts:x[2],ans:x[3],exp:x[4]}));
 const dom=D.map(x=>({section:"B",topic:x[0],q:x[1],opts:x[2],ans:x[3],exp:x[4]}));
-const Q=raw.concat(dom);
+const Q=raw.concat(dom.slice(0,50));
 if(Q.length!==100||Q.filter(x=>x.section==="A").length!==50||Q.filter(x=>x.section==="B").length!==50)throw new Error("Question-bank integrity failed: "+Q.length);
 const S={i:0,sec:0,a:Array(100).fill(null),m:Array(100).fill(false),left:3600,on:false};
 const $=id=>document.getElementById(id),lo=()=>S.sec?50:0,hi=()=>S.sec?99:49;
